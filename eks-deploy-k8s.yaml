@@ -9,6 +9,11 @@ spec:
   selector:
     matchLabels:
       app: springboot-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
   template:
     metadata:
       labels:
@@ -22,7 +27,6 @@ spec:
         - containerPort: 8085
           name: http
           protocol: TCP
-# service type loadbalancer       
 ---
 apiVersion: v1
 kind: Service
